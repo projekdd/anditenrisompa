@@ -1,0 +1,95 @@
+backend:
+  name: github
+  repo: projekdd/anditenrisompa
+  branch: main
+  # Ganti URL ini setelah OAuth proxy Cloudflare Worker diterbitkan.
+  base_url: https://GANTI-DENGAN-URL-WORKER.workers.dev
+  auth_endpoint: /auth
+  commit_messages:
+    update: "Perbarui {{collection}}: {{slug}}"
+
+site_url: https://anditenrisompa.com
+display_url: https://anditenrisompa.com
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: pengaturan_situs
+    label: Konten Website
+    files:
+      - name: konten_utama
+        label: Profil, Berita, dan Kontak
+        file: content/site.json
+        format: json
+        fields:
+          - { label: Judul tab browser, name: siteTitle, widget: string }
+          - { label: Nama singkat di menu, name: brand, widget: string }
+          - label: Bagian pembuka
+            name: hero
+            widget: object
+            fields:
+              - { label: Label kecil, name: eyebrow, widget: string }
+              - { label: Judul utama, name: title, widget: text }
+              - { label: Paragraf pembuka, name: intro, widget: text }
+              - { label: Foto profil, name: photo, widget: image }
+          - label: Profil
+            name: profile
+            widget: object
+            fields:
+              - { label: Nama lengkap, name: name, widget: string }
+              - { label: Ringkasan profil, name: intro, widget: text }
+              - { label: Fokus pengabdian, name: focus, widget: text }
+              - { label: Peran publik, name: role, widget: text }
+              - { label: Komitmen, name: commitment, widget: text }
+          - label: Pendidikan dan kiprah
+            name: journey
+            widget: object
+            fields:
+              - { label: Judul bagian, name: title, widget: string }
+              - label: Kartu informasi
+                name: cards
+                widget: list
+                fields:
+                  - { label: Label, name: label, widget: string, required: false }
+                  - { label: Judul, name: title, widget: string }
+                  - { label: Isi, name: text, widget: text }
+          - label: Organisasi, sosial, dan penghargaan
+            name: organization
+            widget: object
+            fields:
+              - { label: Judul bagian, name: title, widget: string }
+              - label: Kartu informasi
+                name: cards
+                widget: list
+                fields:
+                  - { label: Judul, name: title, widget: string }
+                  - { label: Isi, name: text, widget: text }
+          - label: Berita
+            name: news
+            widget: object
+            fields:
+              - { label: Judul bagian, name: title, widget: string }
+              - { label: Foto berita, name: photo, widget: image }
+              - label: Daftar berita
+                name: items
+                widget: list
+                fields:
+                  - { label: Judul berita, name: title, widget: string }
+                  - { label: Ringkasan, name: summary, widget: text }
+          - { label: Kutipan, name: quote, widget: text }
+          - label: Kontak
+            name: contact
+            widget: object
+            fields:
+              - { label: Instansi, name: organization, widget: string }
+              - { label: Alamat, name: address, widget: text }
+              - label: Email
+                name: emails
+                widget: list
+                field: { label: Alamat email, name: email, widget: string }
+          - label: Media sosial
+            name: social
+            widget: list
+            fields:
+              - { label: Nama layanan, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
