@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Admin — Andi Tenri Sompa</title>
+  <style>body{margin:0;display:grid;min-height:100vh;place-items:center;background:#f6f4ef;color:#172535;font:16px/1.6 system-ui,sans-serif}.notice{width:min(560px,calc(100% - 48px));padding:32px;background:#fffdf9;border:1px solid #dcd6cb;border-radius:8px}.notice h1{margin-top:0;color:#244c6c}.notice a{color:#244c6c}</style>
+</head>
+<body>
+  <main class="notice" id="setup-notice">
+    <h1>Editor admin sedang disiapkan</h1>
+    <p>Login GitHub akan aktif setelah penghubung keamanan dikonfigurasi. Panduan tersedia di <a href="../PANDUAN-ADMIN.md">PANDUAN-ADMIN.md</a>.</p>
+  </main>
+  <noscript>Halaman admin membutuhkan JavaScript untuk dijalankan.</noscript>
+  <script>
+    fetch('config.yml').then((response) => response.text()).then((config) => {
+      if (config.includes('GANTI-DENGAN-URL-WORKER')) return;
+      document.getElementById('setup-notice').remove();
+      const cms = document.createElement('script');
+      cms.src = 'https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js';
+      document.body.append(cms);
+    }).catch(() => {});
+  </script>
+</body>
+</html>
